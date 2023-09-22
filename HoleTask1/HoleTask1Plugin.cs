@@ -129,9 +129,10 @@ namespace HoleTask1Plugin
                 var perimeterPoints = new List<Autodesk.DesignScript.Geometry.Point>();
                 foreach (Edge item in AgesOfOneFace)
                 {
-                    var pointStart = item.;
+                    var pointStart = item.GetEndPointReference(0).GlobalPoint;
                     var pointStartDynamo = Autodesk.DesignScript.Geometry.Point.ByCoordinates(pointStart.X, pointStart.Y, pointStart.Z);
                     perimeterPoints.Add(pointStartDynamo);
+                    ///Добавить и конечную точку GetEndPointReference(1)
                 }
                 var face = Autodesk.DesignScript.Geometry.Surface.ByPerimeterPoints(perimeterPoints);
                 if (faceWithoutHoles == null || faceWithHoles.Area < faceWithoutHoles.Area)
